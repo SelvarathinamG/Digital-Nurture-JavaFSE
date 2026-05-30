@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Community Event Portal</title>
+  <style>
+    :root {
+      --ink: #222;
+      --muted: #666;
+      --line: #d7d7d7;
+      --accent: #27566b;
+      --soft: #f7f4ef;
+      --shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4efe6;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .page-shell {
+      width: min(1100px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 16px 0 32px;
+    }
+    header, section, footer {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    header { overflow: hidden; }
+
+    .topline,
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+    }
+    .topline { border-bottom: 1px solid var(--line); background: var(--soft); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+    }
+    .brand h1,
+    .stats-card h3,
+    h2.section-title,
+    h3.section-title {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    .brand h1 { font-size: 1.25rem; }
+    .brand p, .subtle, .mini-note, .footer-inner { color: var(--muted); }
+    .brand p { margin: 2px 0 0; font-size: .92rem; }
+    nav { padding: 12px 18px 16px; }
+
+    .nav-links,
+    .form-actions,
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
+      gap: 8px;
+      width: 100%;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-links::-webkit-scrollbar {
+      display: none;
+    }
+    .nav-links a {
+      flex: 0 0 auto;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      font-size: .92rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { background: #eef3f5; }
+
+    main { display: grid; gap: 16px; margin-top: 16px; }
+    .section-inner { padding: 18px; max-width: 960px; margin-left: auto; margin-right: auto; }
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: .72rem;
+      font-weight: 700;
+    }
+    .hero,
+    .grid-two,
+    .feedback-row {
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero { grid-template-columns: 1fr; }
+    .grid-two { grid-template-columns: 1.1fr .9fr; }
+    .feedback-row { grid-template-columns: 1fr .8fr; }
+    .hero-copy {
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: #fafafa;
+    }
+    .hero-copy h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+      line-height: 1.1;
+    }
+    .hero-copy p {
+      margin: 0 0 12px;
+      line-height: 1.6;
+      max-width: 62ch;
+    }
+    .hero-note,
+    #welcomeBanner,
+    .stats-card,
+    .callout,
+    figure,
+    output,
+    .status,
+    .feedback-image {
+      border-radius: 12px;
+    }
+    #welcomeBanner { margin-top: 14px; padding: 14px 16px; background: #eef5f7; color: var(--ink); }
+    .stats-card { padding: 18px; background: #faf8f4; gap: 12px; }
+    .stat-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed #cfcfcf;
+    }
+    .stat-line:last-child { border-bottom: 0; padding-bottom: 0; }
+    .stat-line strong, .footer-inner strong { color: var(--accent); }
+    .subtle { line-height: 1.55; margin: 0; }
+    .card-stack { display: grid; gap: 12px; }
+    .callout {
+      border: 1px solid #d9e4e8;
+      background: #f3f8fa;
+      padding: 14px;
+      line-height: 1.55;
+    }
+    .help-link { display: inline-block; margin-top: 10px; color: var(--accent); font-weight: 600; }
+
+    .highlight {
+      background: #dceefb;
+      color: #064e3b;
+      padding: 6px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .gallery-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 10px;
+    }
+    .gallery-table caption { text-align: left; padding: 0 2px 6px; color: var(--muted); }
+    .gallery-cell { width: 33.33%; vertical-align: top; }
+    figure { margin: 0; border: 1px solid var(--line); background: #fff; overflow: hidden; }
+    .gallery-shot {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--line);
+      cursor: zoom-in;
+    }
+    .gallery-shot.zoomed,
+    .feedback-image img.zoomed {
+      transform: scale(1.05);
+      cursor: zoom-out;
+    }
+    figcaption {
+      padding: 10px 12px 12px;
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.45;
+    }
+
+    form { display: grid; gap: 14px; }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    label { display: grid; gap: 6px; font-size: .95rem; font-weight: 600; }
+    input, select, textarea, button { font: inherit; }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid #c8c8c8;
+      border-radius: 10px;
+      padding: 11px 12px;
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+    textarea { min-height: 120px; resize: vertical; }
+    .full-span { grid-column: 1 / -1; }
+    .form-actions { align-items: center; }
+    .form-actions button { width: 100%; }
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 16px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button.secondary {
+      background: #fff;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+    output,
+    .status {
+      display: block;
+      padding: 11px 12px;
+      min-height: 44px;
+      line-height: 1.5;
+      background: #eef5f7;
+      color: var(--ink);
+    }
+    .mini-note { font-size: .9rem; }
+    .field-row > * { flex: 1 1 220px; }
+    .feedback-image { overflow: hidden; border: 1px solid var(--line); background: #fff; }
+    .feedback-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      object-fit: cover;
+      cursor: zoom-in;
+    }
+    .media-center {
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+    }
+    .media-block {
+      width: min(100%, 760px);
+      text-align: center;
+    }
+    .media-player {
+      width: 100%;
+      margin: 0 auto;
+    }
+    footer { margin-top: 16px; }
+    .footer-inner { padding: 14px 18px; }
+    .footer-inner strong { color: var(--ink); }
+
+    @media (max-width: 920px) {
+      .hero,
+      .grid-two,
+      .feedback-row,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-table,
+      .gallery-cell,
+      .gallery-table tbody,
+      .gallery-table tr,
+      .gallery-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .gallery-table tr { margin-bottom: 10px; }
+      .gallery-table td { padding: 0; }
+    }
+
+    @media (min-width: 920px) {
+      .hero { grid-template-columns: 1.2fr .8fr; }
+    }
+
+    @media (max-width: 640px) {
+      .page-shell { width: min(100% - 16px, 1100px); padding-top: 8px; }
+      .topline,
+      .footer-inner,
+      nav,
+      .section-inner {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+      .topline { align-items: flex-start; flex-direction: column; }
+      .gallery-shot { height: 210px; }
+      .nav-links { justify-content: flex-start; }
+      .nav-links a { font-size: .9rem; padding: 9px 10px; }
+      .form-actions { grid-template-columns: 1fr; }
+      .form-actions button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header>
+      <div class="topline">
+        <div class="brand">
+          <div class="brand-mark">CE</div>
+          <div>
+            <h1>City Events Desk</h1>
+            <p>Local Community Event Portal</p>
+          </div>
+        </div>
+        <div class="mini-note">Community event portal.</div>
+      </div>
+
+      <nav aria-label="Primary">
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#events">Events</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home">
+        <div class="section-inner hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Welcome</p>
+            <h2>Find local events, register, and check details in one page.</h2>
+            <p>
+              This page keeps the common stuff together: events, registration, feedback, and location help.
+              <span style="color:red;font-weight:700">Special: free entry for children this weekend.</span>
+            </p>
+            <p>
+              The form saves the event type, shows a small fee note, and gives a message after submit.
+            </p>
+
+            <div id="welcomeBanner" class="highlight">
+              Weekend events are listed below.
+            </div>
+         
+        </div>
+          <div class="hero-side">
+            <h3>Today at a glance</h3>
+            <aside class="stats-card">
+              <h3></h3>
+              <div class="stat-line"><span>Open registrations</span><strong>12</strong></div>
+              <div class="stat-line"><span>Community venues</span><strong>4</strong></div>
+              <div class="stat-line"><span>Volunteer spots left</span><strong>18</strong></div>
+              <div class="stat-line"><span>Help desk hours</span><strong>9:00 AM - 5:00 PM</strong></div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="events">
+        <div class="section-inner grid-two">
+          <div>
+            <p class="eyebrow">Events</p>
+            <h2 class="section-title">This week's events</h2>
+            
+            <div class="card-stack" style="margin-top: 16px;">
+              <div class="callout">
+                <strong>Saturday Market</strong><br>
+                Bus stands market, local areas markets, and family parks goverment park at vada chennai,chennaifrom 8:00 AM to 4:00 PM.
+              </div>
+              <div class="callout">
+                <strong>Volunteer Cleanup</strong><br>
+                A simple neighborhood cleanup along north street Street with supplies provided by the council.
+              </div>
+              <div class="callout">
+                <strong>Evening Music Walk</strong><br>
+                A small outdoor set at the community stage with seating open on a first-come basis.
+              </div>
+            </div>
+          </div>
+          <div class="callout">
+            <strong>Quick note</strong><br>
+            Use the links and form on this page if you need the extra help file.
+            <a class="help-link" href="help.html" target="_blank" rel="noopener">Open the help document</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery">
+        <div class="section-inner">
+          <p class="eyebrow">Gallery</p>
+          <h2 class="section-title">Event photos</h2>
+          <table class="gallery-table">
+          
+            <tbody>
+              <tr>
+                <td class="gallery-cell">
+                  <figure>
+                    <img class="gallery-shot" src="images/community-market.jpg" alt="Local market stalls with produce and visitors" title="Saturday market" ondblclick="toggleZoom(this)">
+                    <figcaption>Weekend market with fresh produce and a steady crowd.</figcaption>
+                  </figure>
+                </td>
+                <td class="gallery-cell">
+                  <figure>
+                    <img class="gallery-shot" src="images/community-volunteers.jpg" alt="Volunteers standing together outdoors" title="Volunteer drive" ondblclick="toggleZoom(this)">
+                    <figcaption>Volunteer sign-up day for neighborhood service work.</figcaption>
+                  </figure>
+                </td>
+                <td class="gallery-cell">
+                  <figure>
+                    <img class="gallery-shot" src="images/city-park.jpg" alt="Park walkway with trees and open space" title="City park event" ondblclick="toggleZoom(this)">
+                    <figcaption>Open park space used for a relaxed family gathering.</figcaption>
+                  </figure>
+                </td>
+              </tr>
+              <tr>
+                <td class="gallery-cell">
+                  <figure>
+                    <img class="gallery-shot" src="images/outdoor-concert.jpg" alt="Outdoor concert crowd under stage lighting" title="Outdoor music evening" ondblclick="toggleZoom(this)">
+                    <figcaption>Small evening concert for residents at the community stage.</figcaption>
+                  </figure>
+                </td>
+                <td class="gallery-cell">
+                  <figure>
+                    <img class="gallery-shot" src="images/food-stalls.jpg" alt="Food stalls with plated meals and drinks" title="Food and craft stalls" ondblclick="toggleZoom(this)">
+                    <figcaption>Food stalls and local vendors set up for a weekend fair.</figcaption>
+                  </figure>
+                </td>
+                <td class="gallery-cell">
+                  <figure>
+                    <img class="gallery-shot" src="images/neighborhood-cleanup.jpg" alt="People taking part in a community cleanup" title="Neighborhood cleanup" ondblclick="toggleZoom(this)">
+                    <figcaption>Street cleanup with volunteers and council support.</figcaption>
+                  </figure>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="register">
+        <div class="section-inner">
+          <p class="eyebrow">Register</p>
+          <h2 class="section-title">Event registration form</h2>
+          <form id="registrationForm" onsubmit="submitRegistration(event)">
+            <div class="form-grid">
+              <label>
+                Full name
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your name" required autofocus>
+              </label>
+              <label>
+                Email address
+                <input type="email" id="email" name="email" placeholder="name@example.com" required>
+              </label>
+              <label>
+                Event date
+                <input type="date" id="eventDate" name="eventDate" required>
+              </label>
+              <label>
+                Event type
+                <select id="eventType" name="eventType" required onchange="updateFee(this.value); savePreferences(this.value)">
+                  <option value="">Choose one</option>
+                  <option value="market">Community market</option>
+                  <option value="cleanup">Neighborhood cleanup</option>
+                  <option value="music">Outdoor music evening</option>
+                  <option value="service">City service desk</option>
+                </select>
+              </label>
+              <label class="full-span">
+                Message
+                <textarea id="message" name="message" placeholder="Tell us what you need from the event"></textarea>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" onclick="showSubmitHint()">Register now</button>
+              <button type="button" class="secondary" onclick="clearPreferences()">Clear Preferences</button>
+            </div>
+
+            
+            <div class="mini-note" id="feeNote">Select an event type to show the current fee.</div>
+          </form>
+        </div>
+      </section>
+
+      <section id="feedback">
+        <div class="section-inner feedback-row">
+          <div>
+            <p class="eyebrow">Feedback</p>
+            <h2 class="section-title">Feedback and checks</h2>
+            <div class="field-row">
+              <label>
+                Phone number
+                <input type="tel" id="phone" placeholder="10-digit phone number" onblur="validatePhone(this)">
+              </label>
+              <label>
+                Satisfaction
+                <select id="satisfaction" onchange="document.getElementById('feedbackStatus').textContent = 'Selected: ' + this.options[this.selectedIndex].text">
+                  <option>Choose a rating</option>
+                  <option>Very good</option>
+                  <option>Good</option>
+                  <option>Needs work</option>
+                </select>
+              </label>
+            </div>
+
+            <div style="margin-top: 14px;">
+              <label>
+                Feedback note
+                <textarea id="feedbackText" placeholder="Write a short note" onkeyup="countCharacters(this)"></textarea>
+              </label>
+              <div class="mini-note" id="charCount">Character count: 0</div>
+              <div class="status" id="feedbackStatus" style="margin-top: 10px;">Choose a rating or leave feedback to update this area.</div>
+            </div>
+          </div>
+
+          <div class="feedback-image">
+            <img src="images/community-volunteers.jpg" alt="Community volunteers working together" title="Double click to enlarge" ondblclick="toggleZoom(this)">
+          </div>
+        </div>
+      </section>
+
+      <section id="media">
+        <div class="section-inner media-center">
+          <div class="media-block">
+            <p class="eyebrow">Video</p>
+            <h2 class="section-title">Short event clip</h2>
+            <video class="media-player" controls oncanplay="videoReady()" poster="images/city-park.jpg" style="display:block;border:1px solid var(--line);background:#000;border-radius:12px;">
+              <source src="videos/community-promo.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="status media-player" id="videoStatus" style="margin-top: 12px;">Loading the video.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="map">
+        <div class="section-inner grid-two">
+          <div>
+            <p class="eyebrow">Nearby Events</p>
+            <h2 class="section-title">Find the closest event</h2>
+            <p class="subtle">
+              Click the button and the browser will try to use your location. 
+            </p>
+            <div class="form-actions" style="margin-top: 14px;">
+              <button type="button" onclick="findNearbyEvents()">Find Nearby Events</button>
+            </div>
+            <div class="status" id="geoStatus" style="margin-top: 12px;">No location has been requested yet.</div>
+          </div>
+          
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="section-inner grid-two">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2 class="section-title">Need help from the council desk?</h2>
+            <p class="subtle">
+              Email: selvarathinamganapathi@gmail.com<br>
+              Phone: +91 9025624338<br>
+              Desk hours: Monday to Friday, 9:00 AM to 5:00 PM
+            </p>
+          </div>
+          <div class="callout">
+            <strong>Support note</strong><br>
+            Send a mail or visit during desk hours for event help.
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+    <footer>
+      <div class="footer-inner">
+        <strong>City Events Desk</strong>
+        <span>Local Community Event Portal</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const feeMap = {
+      market: '$5 registration fee',
+      cleanup: 'Free volunteer sign-up',
+      music: '$8 evening pass',
+      service: 'No charge'
+    };
+
+    let formDirty = false;
+
+    document.getElementById('registrationForm').addEventListener('input', () => {
+      formDirty = true;
+    });
+
+    window.addEventListener('beforeunload', (event) => {
+      if (!formDirty) {
+        return;
+      }
+
+      event.preventDefault();
+      event.returnValue = '';
+    });
+
+    window.addEventListener('load', restorePreferences);
+
+    function showSubmitHint() {
+      document.getElementById('registrationOutput').textContent = 'Submitting your details now.';
+    }
+
+    function submitRegistration(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('fullName').value.trim();
+      const eventType = document.getElementById('eventType').selectedOptions[0]?.text || 'an event';
+      const date = document.getElementById('eventDate').value;
+      const output = document.getElementById('registrationOutput');
+
+      output.textContent = `Thanks, ${name || 'resident'}. Your registration for ${eventType} on ${date || 'the selected date'} is recorded.`;
+      sessionStorage.setItem('lastRegistrationNote', output.textContent);
+      formDirty = false;
+      document.getElementById('feedbackStatus').textContent = 'Registration submitted cleanly.';
+    }
+
+    function validatePhone(field) {
+      const digits = field.value.replace(/\D/g, '');
+
+      if (digits.length === 10) {
+        field.style.borderColor = '#2e8b57';
+        document.getElementById('feedbackStatus').textContent = 'Phone number looks valid.';
+        return;
+      }
+
+      field.style.borderColor = '#b6573b';
+      document.getElementById('feedbackStatus').textContent = 'Phone number should contain 10 digits.';
+    }
+
+    function updateFee(value) {
+      document.getElementById('feeNote').textContent = feeMap[value] ? `Fee: ${feeMap[value]}` : 'Select an event type to show the current fee.';
+    }
+
+    function savePreferences(value) {
+      localStorage.setItem('preferredEventType', value);
+      sessionStorage.setItem('preferredEventType', value);
+    }
+
+    function restorePreferences() {
+      const savedEvent = localStorage.getItem('preferredEventType') || sessionStorage.getItem('preferredEventType');
+      if (savedEvent) {
+        document.getElementById('eventType').value = savedEvent;
+        updateFee(savedEvent);
+      }
+
+      const lastNote = sessionStorage.getItem('lastRegistrationNote');
+      if (lastNote) {
+        document.getElementById('registrationOutput').textContent = lastNote;
+      }
+    }
+
+    function clearPreferences() {
+      localStorage.removeItem('preferredEventType');
+      sessionStorage.clear();
+      document.getElementById('eventType').value = '';
+      document.getElementById('feeNote').textContent = 'Select an event type to show the current fee.';
+      document.getElementById('registrationOutput').textContent = 'Preferences cleared. Fill in the form and submit again.';
+    }
+
+    function countCharacters(field) {
+      document.getElementById('charCount').textContent = `Character count: ${field.value.length}`;
+      formDirty = true;
+    }
+
+    function videoReady() {
+      document.getElementById('videoStatus').textContent = 'Video ready to play.';
+    }
+
+    function findNearbyEvents() {
+      const status = document.getElementById('geoStatus');
+
+      if (!navigator.geolocation) {
+        status.textContent = 'Geolocation is not available in this browser.';
+        return;
+      }
+
+      status.textContent = 'Requesting your location...';
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude, accuracy } = position.coords;
+          status.textContent = `Location found: ${latitude.toFixed(5)}, ${longitude.toFixed(5)}. Accuracy around ${Math.round(accuracy)} meters.`;
+        },
+        (error) => {
+          if (error.code === error.PERMISSION_DENIED) {
+            status.textContent = 'Location access was denied. Turn it on if you want the nearest event details.';
+            return;
+          }
+
+          if (error.code === error.TIMEOUT) {
+            status.textContent = 'The location request timed out. Try again in a moment.';
+            return;
+          }
+
+          status.textContent = 'Could not get the location right now.';
+        },
+        { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+      );
+    }
+
+    function toggleZoom(image) {
+      image.classList.toggle('zoomed');
+    }
+  </script>
+</body>
+</html>
