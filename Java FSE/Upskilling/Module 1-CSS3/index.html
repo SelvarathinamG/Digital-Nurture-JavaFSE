@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Local Community Event Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { background-color: #f7fbff; }
+  </style>
+</head>
+<body>
+  <header id="mainHeader" style="color: red;">
+    <h1>Local Community Event Portal</h1>
+    <p class="tagline">News, meetups, and neighbourhood updates from the local community desk</p>
+  </header>
+
+  <nav class="main-nav" aria-label="Primary">
+    <ul>
+      <li><a href="#events">Home</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="events">
+      <h2>Upcoming Events</h2>
+      <div class="events-grid">
+        <article class="eventCard">
+          <h3>Sunday Park Picnic</h3>
+          <p class="meta">Sunday • 10:00 AM</p>
+          <p class="desc">Bring a mat, share a snack, and spend a relaxed morning with families from the ward.</p>
+          <button class="cta-button" type="button">Register</button>
+        </article>
+
+        <article class="eventCard">
+          <h3>Street Clean-up Drive</h3>
+          <p class="meta">Saturday • 8:00 AM</p>
+          <p class="desc">Join residents near the bus stand for a short clean-up drive and bin collection round.</p>
+          <button class="cta-button" type="button">Sign Up</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="links">
+      <h2>Links and Lists</h2>
+      <ul class="links-list clean">
+        <li><a href="#events">Browse this week’s activities</a></li>
+        <li><a href="#news">Read the neighbourhood bulletin</a></li>
+        <li><a href="#contact">Contact the local desk</a></li>
+      </ul>
+    </section>
+
+    <section id="news">
+      <h2>Community Bulletin</h2>
+      <div class="news-article">
+        <p>Residents from Anna Nagar, Koyambedu, and the nearby streets can check here for the latest updates about meetings, clean-up drives, and weekend gatherings. We keep the bulletin short and useful so people can scan it quickly on mobile.</p>
+        <p>This week’s note: the community hall will stay open for registration help until 5:00 PM, and the park committee will share new volunteer slots after lunch. The layout stays in two columns on larger screens and collapses neatly on smaller ones.</p>
+      </div>
+    </section>
+
+    <section id="admin">
+      <h2>Events Table</h2>
+      <table class="events-table">
+        <thead>
+          <tr><th>Event</th><th>Date</th><th>Attendees</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Sunday Park Picnic</td><td>Jun 12</td><td>150</td></tr>
+          <tr><td>Street Clean-up Drive</td><td>Jun 20</td><td>40</td></tr>
+          <tr><td>Local Talent Evening</td><td>Jul 03</td><td>220</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="boxmodel">
+      <h2>Box Model and Visibility</h2>
+      <div class="box-demo">
+        <div class="box">
+          <strong>Visibility hidden</strong>
+          <p class="ghost-text">This line takes space but stays invisible.</p>
+          <p class="compare-note">The space remains because visibility is hidden.</p>
+        </div>
+        <div class="box">
+          <strong>Display none</strong>
+          <p class="compare-note">The next line is fully removed from the layout:</p>
+          <p class="hidden-none">This paragraph is hidden with display none.</p>
+        </div>
+        <div class="box">
+          <strong>Card spacing</strong>
+          <p>Border, padding, and margin are handled cleanly for the event cards and panels.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <form class="contact-form">
+        <label>Full name <input type="text" name="name" placeholder="Your name" /></label>
+        <label>Email <input type="email" name="email" placeholder="name@example.com" /></label>
+        <label>Message <textarea name="message" placeholder="Tell us what you need help with"></textarea></label>
+        <button class="cta-button" type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Anna Nagar Community Desk • Built for CSS3 exercises</p>
+  </footer>
+</body>
+</html>
