@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Riverside Summer Concert",
+    "date": "2026-06-20",
+    "seats": 200,
+    "category": "music",
+    "location": "Riverside Park",
+    "description": "Local bands and family-friendly performances on the riverside stage. Food trucks and picnic space available."
+  },
+  {
+    "name": "Community Market & Street Food",
+    "date": "2026-06-13",
+    "seats": 120,
+    "category": "food",
+    "location": "Market Square",
+    "description": "A weekend market featuring local producers, street food stalls, and kids' activities."
+  },
+  {
+    "name": "Neighborhood Cleanup Drive",
+    "date": "2026-06-05",
+    "seats": 0,
+    "category": "community",
+    "location": "River Walk",
+    "description": "Volunteer cleanup to keep the riverbank green — supplies provided. (Event is full)"
+  },
+  {
+    "name": "Baking Basics Workshop",
+    "date": "2026-06-17",
+    "seats": 16,
+    "category": "workshop",
+    "location": "Community Kitchen",
+    "description": "Hands-on beginner baking class covering bread and simple pastries. Take home your bakes."
+  },
+  {
+    "name": "Charity 5K Run",
+    "date": "2026-07-03",
+    "seats": 300,
+    "category": "community",
+    "location": "City Loop",
+    "description": "Join the charity run to raise funds for the local shelter. Staggered starts for all fitness levels."
+  },
+  {
+    "name": "Artisan Night Market",
+    "date": "2026-06-27",
+    "seats": 80,
+    "category": "market",
+    "location": "Old Town Lane",
+    "description": "Evening market with handmade crafts, live acoustic music, and warm beverages."
+  }
+]

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Community Event Portal</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <p class="eyebrow">Local Community Event Portal</p>
+      <h1>Find events, register quickly, and keep the neighborhood active.</h1>
+      <p class="intro">
+        Welcome to the neighborhood events page — discover upcoming gatherings, sign up for
+        activities, and find ways to get involved locally. Information is updated live from
+        our community listings.
+      </p>
+      <div class="hero-actions">
+        <button id="loadEventsBtn" type="button">Load Events</button>
+        <button id="showMusicBtn" type="button" class="secondary">Show Music Events</button>
+      </div>
+      <p id="welcomeBanner" class="banner" aria-live="polite"></p>
+    </header>
+
+    <main>
+      <section class="panel" aria-labelledby="setupTitle">
+        <div class="section-head">
+          <h2 id="setupTitle">Getting started</h2>
+          <span class="tag">main.js + console</span>
+        </div>
+        <p>Open the browser console to see the welcome message and the load alert.</p>
+        <div class="info-grid">
+          <div class="info-card">
+            <strong>Event name</strong>
+            <span id="eventInfo"></span>
+          </div>
+          <div class="info-card">
+            <strong>Availability</strong>
+            <span id="availabilityInfo"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="filtersTitle">
+        <div class="section-head">
+          <h2 id="filtersTitle">Explore the events</h2>
+          <span class="tag">conditions, loops, closures, objects, arrays, DOM, async</span>
+        </div>
+        <div class="controls">
+          <label>
+            Category
+            <select id="categoryFilter">
+              <option value="all">All categories</option>
+              <option value="music">Music</option>
+              <option value="community">Community</option>
+              <option value="food">Food</option>
+              <option value="workshop">Workshop</option>
+            </select>
+          </label>
+          <label>
+            Search by name
+            <input id="quickSearch" type="search" placeholder="Type and press Enter">
+          </label>
+          <label>
+            Location
+            <select id="locationFilter">
+              <option value="all">All locations</option>
+              <option value="central park">Central Park</option>
+              <option value="town hall">Town Hall</option>
+              <option value="river walk">River Walk</option>
+              <option value="community center">Community Center</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="async-row">
+          <button id="refreshFromApi" type="button">Fetch mock events</button>
+          <button id="toggleSpinnerBtn" type="button" class="secondary">Simulate loading</button>
+          <span id="loadingSpinner" class="spinner hidden" aria-hidden="true"></span>
+        </div>
+
+        <div id="eventBoard" class="event-board"></div>
+        <div class="stats-row">
+          <div><strong>Total registrations:</strong> <span id="totalRegistrations">0</span></div>
+          <div><strong>Music registrations:</strong> <span id="musicRegistrations">0</span></div>
+          <div><strong>Visible events:</strong> <span id="visibleEvents">0</span></div>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="formTitle">
+        <div class="section-head">
+          <h2 id="formTitle">Registration and submission</h2>
+          <span class="tag">form.elements, preventDefault, validation, fetch, setTimeout</span>
+        </div>
+        <form id="registrationForm" novalidate>
+          <div class="form-grid">
+            <label>
+              Name
+              <input type="text" name="name" autocomplete="name">
+              <small class="error" data-error-for="name"></small>
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" autocomplete="email">
+              <small class="error" data-error-for="email"></small>
+            </label>
+            <label>
+              Selected event
+              <select name="selectedEvent"></select>
+              <small class="error" data-error-for="selectedEvent"></small>
+            </label>
+            <label>
+              Notes
+              <input type="text" name="notes" placeholder="Optional message">
+            </label>
+          </div>
+          <div class="form-actions">
+            <button type="submit">Register now</button>
+          </div>
+        </form>
+        <p id="formMessage" class="status" aria-live="polite"></p>
+      </section>
+
+      <section class="panel" aria-labelledby="jqueryTitle">
+        <div class="section-head">
+          <h2 id="jqueryTitle">A small jQuery corner</h2>
+          <span class="tag">click, fadeIn, fadeOut</span>
+        </div>
+        <p>
+          jQuery can reduce boilerplate for simple DOM work, but frameworks like React or Vue are easier to scale
+          when the portal grows and the UI gets more stateful.
+        </p>
+        <button id="jqueryToggle" type="button" class="secondary">Toggle jQuery card</button>
+        <div id="jqueryCard" class="note-card">This card fades in and out with jQuery.</div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
