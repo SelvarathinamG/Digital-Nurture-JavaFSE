@@ -289,11 +289,13 @@ select:focus {
   color: var(--accent-strong);
 }
 
+
 .note-card {
   margin-top: 14px;
   padding: 16px;
   display: none;
 }
+
 
 .spinner {
   width: 1.05rem;
