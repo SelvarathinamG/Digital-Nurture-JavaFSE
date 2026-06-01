@@ -1,23 +1,23 @@
 import java.util.Scanner;
 
 public class MultiplicationTable {
-    public static void main(String[] args) 
-    {
-        Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter a number: ");
-        int number = sc.nextInt();
+    public static void main(String[] args) {
 
-        for (int i = 1; i <= 10; i++) 
-        {
-            System.out.println(number + " x " + i + " = " + (number * i));
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.print("Enter a number: ");
+            int number = scanner.nextInt();
+            
+            for (int i = 1; i <= 10; i++) {
+                
+                System.out.println(number + " x " + i + " = " + (number * i));
+            }
         }
-
-        sc.close();
     }
 }
 
 /*
+
 Input:
 Enter a number: 5
 
@@ -32,4 +32,5 @@ Output:
 5 x 8 = 40
 5 x 9 = 45
 5 x 10 = 50
+
 */
