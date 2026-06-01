@@ -7,57 +7,68 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 public class BasicJDBCConnection {
+
     private static final String URL = "jdbc:sqlite:students.db";
 
     public static void main(String[] args) {
-        try (Scanner scanner = new Scanner(System.in);
-             Connection connection = DriverManager.getConnection(URL);
-             Statement statement = connection.createStatement()) {
+
+        try {
             Class.forName("org.sqlite.JDBC");
 
-            statement.executeUpdate(
-                    "CREATE TABLE IF NOT EXISTS students ("
-                            + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                            + "name TEXT NOT NULL, "
-                            + "age INTEGER NOT NULL)"
-            );
+            try (Connection connection = DriverManager.getConnection(URL);
+                 Statement statement = connection.createStatement();
+                 Scanner scanner = new Scanner(System.in)) {
 
-            System.out.print("Enter number of students: ");
-            int count = scanner.nextInt();
+                statement.executeUpdate(
+                    "CREATE TABLE IF NOT EXISTS students (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "name TEXT NOT NULL, " +
+                    "age INTEGER NOT NULL)"
+                );
 
-            try (PreparedStatement insert = connection.prepareStatement(
-                    "INSERT INTO students (name, age) VALUES (?, ?)")) {
-                for (int i = 1; i <= count; i++) {
-                    scanner.nextLine();
-                    System.out.print("Enter student name " + i + ": ");
-                    String name = scanner.nextLine();
-                    System.out.print("Enter student age " + i + ": ");
-                    int age = scanner.nextInt();
-                    insert.setString(1, name);
-                    insert.setInt(2, age);
-                    insert.executeUpdate();
+                statement.executeUpdate("DELETE FROM students");
+
+                System.out.print("Enter number of students: ");
+                int count = scanner.nextInt();
+                scanner.nextLine();
+
+                try (PreparedStatement insert = connection.prepareStatement(
+                    "INSERT INTO students(name, age) VALUES(?, ?)"
+                )) {
+                    for (int i = 1; i <= count; i++) {
+                        System.out.print("Enter student name " + i + ": ");
+                        String name = scanner.nextLine();
+
+                        System.out.print("Enter student age " + i + ": ");
+                        int age = scanner.nextInt();
+                        scanner.nextLine();
+
+                        insert.setString(1, name);
+                        insert.setInt(2, age);
+                        insert.executeUpdate();
+                    }
+                }
+
+                System.out.println("\nStudent records:");
+
+                try (ResultSet rs = statement.executeQuery(
+                    "SELECT id, name, age FROM students ORDER BY id"
+                )) {
+                    while (rs.next()) {
+                        System.out.println(
+                            rs.getInt("id") + " | " +
+                            rs.getString("name") + " | " +
+                            rs.getInt("age")
+                        );
+                    }
                 }
             }
 
-            System.out.println("Student records:");
-            try (ResultSet resultSet = statement.executeQuery("SELECT id, name, age FROM students ORDER BY id")) {
-                while (resultSet.next()) {
-                    System.out.println(
-                            resultSet.getInt("id") + " | "
-                                    + resultSet.getString("name") + " | "
-                                    + resultSet.getInt("age")
-                    );
-                }
-            }
-        } catch (SQLException exception) {
-            System.out.println("JDBC error: " + exception.getMessage());
-            System.out.println("Make sure the SQLite JDBC driver is available on the classpath.");
-        } catch (ClassNotFoundException exception) {
-            System.out.println("JDBC driver not found: " + exception.getMessage());
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 }
-
 /*
 Input:
 Enter number of students: 2

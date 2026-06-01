@@ -11,14 +11,14 @@ public class PatternMatchingSwitch {
 
 	private static Object parseValue(String input) {
 		if (input.equalsIgnoreCase("true") || input.equalsIgnoreCase("false")) {
-			return Boolean.parseBoolean(input);
+			return Boolean.valueOf(input);
 		}
 		try {
-			return Integer.parseInt(input);
+			return Integer.valueOf(input);
 		} catch (NumberFormatException ignored) {
 		}
 		try {
-			return Double.parseDouble(input);
+			return Double.valueOf(input);
 		} catch (NumberFormatException ignored) {
 		}
 		return input;
@@ -26,17 +26,13 @@ public class PatternMatchingSwitch {
 
 	private static void describeValue(Object value) {
 		String message;
-		if (value instanceof Integer number) {
-			message = "Integer value: " + number;
-		} else if (value instanceof String text) {
-			message = "String value: " + text;
-		} else if (value instanceof Double decimal) {
-			message = "Double value: " + decimal;
-		} else if (value instanceof Boolean flag) {
-			message = "Boolean value: " + flag;
-		} else {
-			message = "Unknown type";
-		}
+            switch (value) {
+                case Integer number -> message = "Integer value: " + number;
+                case String text -> message = "String value: " + text;
+                case Double decimal -> message = "Double value: " + decimal;
+                case Boolean flag -> message = "Boolean value: " + flag;
+                default -> message = "Unknown type";
+            }
 		System.out.println(message);
 	}
 }
