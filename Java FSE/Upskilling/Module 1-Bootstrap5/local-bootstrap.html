@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local Portal Files</title>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/site.css" rel="stylesheet">
+</head>
+<body>
+  <main class="container py-5">
+    <a href="cdn.html" class="btn btn-outline-secondary mb-4">Back to setup</a>
+    <div class="exercise-card p-4">
+      <p class="section-kicker mb-2">Local portal files</p>
+      <h1 class="h2 mb-3">Local files in a working sample</h1>
+      <p>This sample event notice uses local files: <code>vendor/bootstrap/css/bootstrap.min.css</code> and <code>vendor/bootstrap/js/bootstrap.bundle.min.js</code>.</p>
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#localProof" aria-expanded="false" aria-controls="localProof">Toggle local JS plugin</button>
+      <div class="collapse mt-3" id="localProof">
+        <div class="alert alert-success mb-0">The local bundle is working. This collapse panel can open even without CDN JavaScript.</div>
+      </div>
+    </div>
+    <div class="row g-4 mt-4">
+      <div class="col-lg-7">
+        <div class="exercise-card p-4 h-100">
+          <h2 class="h4">Why the local copy matters</h2>
+          <p class="mb-0">The portal can still run on a classroom laptop with no network access because the CSS and JS are copied into the project and linked directly from the <code>vendor</code> folder.</p>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="exercise-card p-4 h-100">
+          <h2 class="h5">Local file check</h2>
+          <ul class="mb-0">
+            <li>CSS comes from the downloaded styles folder.</li>
+            <li>Plugins come from the bundled JS file.</li>
+            <li>Icons remain available from the copied icon package.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" role="img" aria-labelledby="title desc">
+  <title id="title">Volunteer desk</title>
+  <desc id="desc">A local volunteer desk with notice board and forms.</desc>
+  <rect width="640" height="440" fill="#fff3dc"/>
+  <rect x="88" y="108" width="220" height="224" rx="8" fill="#315a7d"/>
+  <rect x="120" y="144" width="156" height="18" fill="#fff7e8"/>
+  <rect x="120" y="186" width="132" height="18" fill="#fff7e8"/>
+  <rect x="120" y="228" width="168" height="18" fill="#fff7e8"/>
+  <rect x="352" y="172" width="166" height="156" rx="8" fill="#e1a12c"/>
+  <circle cx="436" cy="132" r="52" fill="#7b4a35"/>
+  <path d="M344 400c18-72 60-108 96-108s78 36 96 108z" fill="#0f766e"/>
+  <path d="M86 336h464v38H86z" fill="#2f5d50"/>
+</svg>

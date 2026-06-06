@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout Samples - Thendral Nagar Event Portal</title>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="assets/css/site.css" rel="stylesheet">
+</head>
+<body>
+  <main class="container py-5">
+    <a href="index.html" class="btn btn-outline-secondary mb-4">Back to home</a>
+    <div class="exercise-card p-4 mb-4">
+      <p class="section-kicker mb-2">Layout samples</p>
+      <h1 class="display-5 fw-bold mb-2">Grid, columns, alignment, ordering, and flex</h1>
+      <p class="lead mb-0">The examples below use local community content so the layout reads like a genuine portal.</p>
+    </div>
+
+    <section class="mt-4">
+      <h2 class="h4">Responsive event cards</h2>
+      <div class="row g-3">
+        <div class="col-12 col-md-6 col-lg-4"><div class="demo-box bg-primary-subtle"><strong>Street Food Evening</strong><span class="text-muted">Stacks on mobile</span></div></div>
+        <div class="col-12 col-md-6 col-lg-4"><div class="demo-box bg-success-subtle"><strong>Library Reading Hour</strong><span class="text-muted">Two per row on tablets</span></div></div>
+        <div class="col-12 col-md-6 col-lg-4"><div class="demo-box bg-warning-subtle"><strong>Sunday Sports Meet</strong><span class="text-muted">Three per row on desktop</span></div></div>
+      </div>
+    </section>
+
+    <section class="mt-5">
+      <h2 class="h4">Sidebar and content</h2>
+      <div class="row g-3 sidebar-demo">
+        <aside class="col-md-3"><div class="demo-box h-100 bg-dark text-white">Sidebar col-md-3<br>Area notices</div></aside>
+        <article class="col-md-9"><div class="demo-box h-100">Content area col-md-9<br>Main event schedule and updates</div></article>
+      </div>
+    </section>
+
+    <section class="mt-5">
+      <h2 class="h4">Four equal columns</h2>
+      <div class="row g-3">
+        <div class="col-sm-3"><div class="demo-box">Health camp</div></div>
+        <div class="col-sm-3"><div class="demo-box">Book drive</div></div>
+        <div class="col-sm-3"><div class="demo-box">Clean street</div></div>
+        <div class="col-sm-3"><div class="demo-box">Kolam contest</div></div>
+      </div>
+    </section>
+
+    <section class="mt-5">
+      <h2 class="h4">Centered row</h2>
+      <div class="row justify-content-center align-items-center bg-body-secondary rounded p-4" style="min-height: 180px;">
+        <div class="col-md-5"><div class="demo-box">Centered announcement using justify-content-center and align-items-center</div></div>
+      </div>
+    </section>
+
+    <section class="mt-5">
+      <h2 class="h4">Reordered columns</h2>
+      <div class="row g-3">
+        <div class="col-md-6 order-md-2"><div class="demo-box bg-info-subtle">Event poster appears first on mobile, second on md+</div></div>
+        <div class="col-md-6 order-md-1"><div class="demo-box bg-danger-subtle">Important timing appears second on mobile, first on md+</div></div>
+      </div>
+    </section>
+
+    <section class="mt-5">
+      <h2 class="h4">Flex utilities</h2>
+      <nav class="d-flex flex-column flex-md-row gap-2 bg-white border rounded p-3">
+        <a class="btn btn-outline-primary" href="#">This week</a>
+        <a class="btn btn-outline-primary" href="#">Volunteer desk</a>
+        <a class="btn btn-outline-primary" href="#">Venue map</a>
+      </nav>
+      <div class="card mt-3">
+        <div class="card-body d-flex justify-content-between align-items-center">
+          <div>
+            <h3 class="h5 mb-1">Evening Market</h3>
+            <p class="text-muted mb-0">Uses justify-content-between and align-items-center.</p>
+          </div>
+          <button class="btn btn-success"><i class="bi bi-check2-circle me-1"></i>Open</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

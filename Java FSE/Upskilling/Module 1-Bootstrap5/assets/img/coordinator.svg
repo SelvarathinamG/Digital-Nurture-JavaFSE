@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" role="img" aria-labelledby="title desc">
+  <title id="title">Community coordinator</title>
+  <desc id="desc">Simple portrait illustration for a local event coordinator.</desc>
+  <rect width="640" height="440" fill="#e7f2ef"/>
+  <circle cx="320" cy="178" r="74" fill="#7b4a35"/>
+  <path d="M202 410c18-98 82-148 120-148s102 50 120 148z" fill="#0f766e"/>
+  <path d="M240 186c14-78 54-118 120-82 42 24 48 82 26 134-44-28-92-28-146-52z" fill="#2c3f52"/>
+  <circle cx="290" cy="176" r="8" fill="#1f2d35"/>
+  <circle cx="348" cy="176" r="8" fill="#1f2d35"/>
+  <path d="M292 218c24 18 52 18 76 0" fill="none" stroke="#3a2720" stroke-width="9" stroke-linecap="round"/>
+</svg>
