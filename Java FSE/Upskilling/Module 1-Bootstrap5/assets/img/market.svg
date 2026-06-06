@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" role="img" aria-labelledby="title desc">
+  <title id="title">Evening community market</title>
+  <desc id="desc">Small market stall with local event badges.</desc>
+  <rect width="640" height="440" fill="#eaf4f0"/>
+  <path d="M78 164h484l-46-82H124z" fill="#d95536"/>
+  <path d="M112 164h416v216H112z" fill="#fff7e8"/>
+  <rect x="154" y="220" width="96" height="88" fill="#0f766e"/>
+  <rect x="292" y="220" width="96" height="88" fill="#e1a12c"/>
+  <rect x="430" y="220" width="52" height="88" fill="#315a7d"/>
+  <path d="M88 342h464v42H88z" fill="#2f5d50"/>
+  <circle cx="204" cy="198" r="16" fill="#315a7d"/>
+  <circle cx="344" cy="198" r="16" fill="#d95536"/>
+  <circle cx="462" cy="198" r="16" fill="#0f766e"/>
+</svg>

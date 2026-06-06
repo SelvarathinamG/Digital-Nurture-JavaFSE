@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portal Setup - Thendral Nagar Event Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/site.css" rel="stylesheet">
+</head>
+<body>
+  <main class="container py-5">
+    <a href="index.html" class="btn btn-outline-secondary mb-4">Back to home</a>
+    <div class="exercise-card p-4 mb-4">
+      <p class="section-kicker mb-2">Portal setup</p>
+      <h1 class="display-5 fw-bold mb-2">Starting the portal with linked styles</h1>
+      <p class="lead mb-0">This page starts with the CDN-linked stylesheet and points to the downloaded files used by the rest of the portal.</p>
+    </div>
+
+    <section class="row g-4 mt-3">
+      <div class="col-lg-6">
+        <div class="exercise-card p-4">
+          <h2 class="h4">CDN sample</h2>
+          <p>The CSS link in this page points to jsDelivr. The button below uses a ready-made button class.</p>
+          <button class="btn btn-primary">Check event notices</button>
+          <p class="small text-muted mt-3 mb-0">For a quick start, this is the cleanest starting point before switching to downloaded files.</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="exercise-card p-4">
+          <h2 class="h4">Local project</h2>
+          <p>The portal also uses downloaded files inside <code>vendor/</code>. This is useful when the lab computer has no internet.</p>
+          <a class="btn btn-success" href="local-bootstrap.html">Open local-file sample</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="exercise-card p-4 mt-4">
+      <h2 class="h4">Directory structure</h2>
+      <div class="row g-3">
+        <div class="col-md-4"><div class="demo-box"><strong>css/</strong><br><span class="text-muted">Compiled styles for grid, utilities, forms, cards, navbars, and buttons.</span></div></div>
+        <div class="col-md-4"><div class="demo-box"><strong>js/</strong><br><span class="text-muted">Plugins used for collapse, modal, accordion, and the nav toggler.</span></div></div>
+        <div class="col-md-4"><div class="demo-box"><strong>icons/</strong><br><span class="text-muted">Icons and font files used for event, mail, search, and social symbols.</span></div></div>
+      </div>
+      <div class="row g-3 mt-2">
+        <div class="col-lg-4"><div class="demo-box bg-body-tertiary">vendor/bootstrap/css/bootstrap.min.css</div></div>
+        <div class="col-lg-4"><div class="demo-box bg-body-tertiary">vendor/bootstrap/js/bootstrap.bundle.min.js</div></div>
+        <div class="col-lg-4"><div class="demo-box bg-body-tertiary">vendor/bootstrap-icons/font/bootstrap-icons.min.css</div></div>
+      </div>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
